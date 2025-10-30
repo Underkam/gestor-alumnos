@@ -20,3 +20,21 @@ def anadir_alumno(alumnos):
     alumnos.append(set_de_datos)
     
     print(f'Alumno agregado correctamente {set_de_datos}')
+
+
+def buscar_alumno(alumnos):
+    nombre_buscar = input("Ingrese el nombre del alumno a buscar: ")
+    encontrado = False
+    for alumno in alumnos:
+        if alumno["nombre"].lower() == nombre_buscar.lower():
+            print(f"Alumno encontrado:")
+            print(f"Nombre: {alumno['nombre']}, Edad: {alumno['edad']}, Nota: {alumno['nota']}")
+            encontrado = True
+            break
+    if not encontrado:
+        print("Alumno no encontrado.")
+
+def mostrar_alumnos(alumnos):
+    print("\nListado de alumnos:")
+    for alumno in alumnos:
+        print(f"Nombre: {alumno['nombre']}, Edad: {alumno['edad']}, Nota: {alumno['nota']}")
