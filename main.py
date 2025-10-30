@@ -7,20 +7,23 @@
 # - estadisticas.py → cálculos de estadísticas del grupo
 
 import os
+from colorama import init, Fore, Style
 
+# Inicializa colorama (necessari per Windows)
+init(autoreset=True)
 
 def show_menu() -> None:
     """
     Muestra el menú principal con las opciones disponibles.
     """
-    print("-" * 40)
-    print("************ MENÚ PRINCIPAL ************")
-    print("1. Ver lista de alumnos")
-    print("2. Añadir un nuevo alumno")
-    print("3. Buscar un alumno por nombre")
-    print("4. Mostrar estadísticas del grupo")
-    print("5. Salir")
-    print("-" * 40)
+    print(Fore.CYAN + "-" * 45)
+    print(Fore.YELLOW + "************ MENÚ PRINCIPAL ************")
+    print(Fore.GREEN + "1." + Fore.WHITE + " Ver lista de alumnos")
+    print(Fore.GREEN + "2." + Fore.WHITE + " Añadir un nuevo alumno")
+    print(Fore.GREEN + "3." + Fore.WHITE + " Buscar un alumno por nombre")
+    print(Fore.GREEN + "4." + Fore.WHITE + " Mostrar estadísticas del grupo")
+    print(Fore.RED   + "5." + Fore.WHITE + " Salir")
+    print(Fore.CYAN + "-" * 45)
 
 
 def get_option(mensaje, minimo=None, maximo=None):
@@ -29,22 +32,22 @@ def get_option(mensaje, minimo=None, maximo=None):
     """
     while True:
         try:
-            valor = int(input(mensaje).strip())
+            valor = int(input(Fore.YELLOW + mensaje).strip())
 
             if minimo is not None and valor < minimo:
-                print(f"❌ Debes ingresar un número {minimo} - {maximo}.")
+                print(Fore.RED + f"❌ Debes ingresar un número entre {minimo} y {maximo}.")
                 continue
 
             if maximo is not None and valor > maximo:
-                print(f"❌ Debes ingresar un número entre {minimo} - {maximo}.")
+                print(Fore.RED + f"❌ Debes ingresar un número entre {minimo} y {maximo}.")
                 continue
 
             return valor
 
         except ValueError:
-            print("❌ Entrada inválida. Introduce un número válido.")
+            print(Fore.RED + "❌ Entrada inválida. Introduce un número válido.")
         except (EOFError, KeyboardInterrupt):
-            print("\n⚠️ Entrada interrumpida por el usuario.")
+            print(Fore.MAGENTA + "\n⚠️ Entrada interrumpida por el usuario.")
             raise
 
 
@@ -55,28 +58,27 @@ def main() -> None:
     os.system('cls' if os.name == 'nt' else 'clear')
 
     while True:
-        # Muestro menu opciones.
+        # Mostrar menú
         show_menu()
-        # Selecciono opción del usuario.
         opcion = get_option('Elije una opción: ', 1, 5)
 
         match opcion:
             case 1:
-                print(1)
+                print(Fore.CYAN + "📋 Mostrando lista de alumnos...")
             case 2:
-                print(2)
+                print(Fore.GREEN + "➕ Añadiendo nuevo alumno...")
             case 3:
-                print(3)
+                print(Fore.BLUE + "🔍 Buscando alumno por nombre...")
             case 4:
-                print(4)
+                print(Fore.MAGENTA + "📊 Mostrando estadísticas del grupo...")
             case 5:
-                print("\n✅ Sistema cerrado. ¡Hasta pronto!")
+                print(Fore.GREEN + "\n✅ Sistema cerrado. ¡Hasta pronto!")
                 break
             case _:
-                print("❌ Opción no válida. Elige un número del 1 al 5.")
+                print(Fore.RED + "❌ Opción no válida. Elige un número del 1 al 5.")
 
         if opcion in {1, 2, 3, 4}:
-            input('\nPulsa Enter para continuar...')
+            input(Fore.YELLOW + '\nPulsa Enter para continuar...')
             os.system('cls' if os.name == 'nt' else 'clear')
 
 
