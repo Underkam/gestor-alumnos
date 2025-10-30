@@ -7,10 +7,15 @@
 # - estadisticas.py → cálculos de estadísticas del grupo
 
 import os
-from colorama import init, Fore, Style
+from colorama import init, Fore
+from funciones_alumnos import get_alumnos, mostrar_alumnos, anadir_alumno, buscar_alumno
+from estadisticas import get_results
+ 
 
 # Inicializa colorama (necessari per Windows)
 init(autoreset=True)
+
+alumnos = get_alumnos()
 
 def show_menu() -> None:
     """
@@ -64,13 +69,13 @@ def main() -> None:
 
         match opcion:
             case 1:
-                print(Fore.CYAN + "📋 Mostrando lista de alumnos...")
+                mostrar_alumnos(alumnos)
             case 2:
-                print(Fore.GREEN + "➕ Añadiendo nuevo alumno...")
+                anadir_alumno(alumnos)
             case 3:
-                print(Fore.BLUE + "🔍 Buscando alumno por nombre...")
+                buscar_alumno(alumnos)
             case 4:
-                print(Fore.MAGENTA + "📊 Mostrando estadísticas del grupo...")
+                get_results(alumnos)
             case 5:
                 print(Fore.GREEN + "\n✅ Sistema cerrado. ¡Hasta pronto!")
                 break

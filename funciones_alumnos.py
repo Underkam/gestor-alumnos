@@ -12,8 +12,8 @@ def get_alumnos():
 
 def anadir_alumno(alumnos):
     alumno_agregar = input('Ingrese el nombre del alumno: ').lower()
-    edad_agregar = int(input('Ingrese la edad del alumno'))
-    nota_agregar = float(input('Ingrese la nota a agregar'))
+    edad_agregar = int(input('Ingrese la edad del alumno: '))
+    nota_agregar = float(input('Ingrese la nota a agregar: '))
     
     set_de_datos = {'nombre': alumno_agregar,'edad': edad_agregar, 'nota': nota_agregar}
     
